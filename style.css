@@ -1,0 +1,177 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#zone{
+    background: linear-gradient(#dbe5e6, #FFDEDE);
+    padding: 30px 0px;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.title {
+    text-align: center;
+    padding: 25px 0px;
+}
+
+.title p {
+    font-size: 17px;
+    padding: 20px;
+}
+
+
+#all-zones, #all-sights{
+    animation: fadeIn 2s;  
+}
+
+
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+
+#all-zones h1 {
+    text-align: center;
+    font-weight: 900;
+    font-size: 34px;
+}
+
+#all-zones h5 {
+    font-weight: 600;
+}
+
+.card-body {
+    box-shadow: 0 0 20px 7px rgba(0,0,0,0.1);
+}
+
+
+.card {
+    border-radius: 6px;
+    margin: 20px 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.card:hover{
+    border: 1px solid #00838d;
+    box-shadow: 0px 0px 999px 999px rgba(255, 255, 255, 0.5);
+    z-index: 500;
+    transition: 0.1s linear;
+    transform: scale(1.05);
+}
+
+
+.card-body a {
+    color: #0c7f90;
+    text-decoration: none;
+    font-size: 15px;
+    margin-top: auto;
+    font-weight: 600;
+}
+
+.card-body a:hover {
+    color: #63e6b0;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.top-button {
+    position: fixed;
+    border-radius: 90px;
+    height: 45px;
+    width: 45px;
+    bottom: 90px;
+    right: 50px;
+    text-align: center;
+    background-color: #FF6E6E;
+    padding-top: 11px;
+    color: white;
+    z-index: 100;
+}
+
+.back-button {
+    position: fixed;
+    border-radius: 90px;
+    height: 45px;
+    width: 45px;
+    bottom: 160px;
+    right: 50px;
+    text-align: center;
+    background-color: #FF6E6E;
+    padding-top: 11px;
+    color: white;
+    z-index: 100;
+}
+
+.card-name {
+    font-weight: 500;
+}
+
+.card-header {
+    background-color:white;
+}
+
+.accordion-button {
+    background-color:white;
+    padding-bottom: 0px;
+}
+
+.accordion-button:not(.collapsed){
+    background-color:white;
+    box-shadow: none;
+    padding-bottom: 0px;
+}
+
+.accordion-button:focus {
+    border-color:white;
+    outline: none;
+    box-shadow: none;
+    padding-bottom: 0px;
+}
+
+.card-header .card-name {
+    color:black;
+    padding-top: 4px;
+    font-weight: 550;
+}
+
+.card-header .card-zone, .card-category {
+    color: #4F4F4F;
+    margin-bottom: 0px;
+    padding-top: 4px;
+}
+
+
+
+.card-header img {
+    max-width:100%;
+    max-height:100%;
+    border:2px #E0E0E0 solid;
+    padding:5px;
+    margin-bottom: 20px;
+}
+
+.card-header .card-address {
+    color: #0c7f90;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.card-header .card-title {
+    padding-bottom: 0px;
+}
+
+.card-header a:hover {
+    color: #63e6b0;
+    text-decoration: none;
+    transition: 0.3s;
+}

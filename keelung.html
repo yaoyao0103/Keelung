@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <title>Keelung Sights</title>
+    <link rel="icon" href="images/duck.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/duck.png" type="image/x-icon" />
+  </head>
+  <body>
+
+
+    
+
+    <section id="zone">
+
+      <a href="#top" target="_self" class="top-button"><i class="fa fa-angle-up"></i></a>
+
+      <a href="#" class="back-button" onclick="show()"><i class="fas fa-angle-left"></i></i></a>
+
+      <div class="title">
+        <h1>Keelung City</h1>
+        <p>The following are the zones of ​​Keelung</p>
+      </div>
+      
+      <div class="container" id="all-zones">
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="card text-center">
+              <img src="images/七堵.jpg" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">七堵區</h5>
+                <p class="card-text">位於基隆市西南方，為基隆市面積最大的行政區。基隆市政府已定位七堵為基隆副都心。</p>
+                <a href="#" onclick="fetchData('七堵')">See attractions</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card text-center">
+              <img src="images/中山.jpg" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">中山區</h5>
+                <p class="card-text">位於台灣基隆市北部的區，位處基隆港西岸，港區之主要設施多位在此區內。</p>
+                <a href="#" onclick="fetchData('中山')">See attractions</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card text-center">
+              <img src="images/中正.jpg" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">中正區</h5>
+                <p class="card-text">位於基隆市中心東北、基隆港東面，為基隆市政府所在地</p>
+                <a href="#" onclick="fetchData('中正')">See attractions</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="card text-center">
+              <img src="images/仁愛.jpg" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">仁愛區</h5>
+                <p class="card-text">位於基隆市中央位置的區，位處市中心的精華地帶，為基隆市面積最小、人口密度最高的行政區。</p>
+                <a href="#" onclick="fetchData('仁愛')">See attractions</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card text-center">
+              <img src="images/安樂.jpg" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">安樂區</h5>
+                <p class="card-text">位於基隆市的西北方，為基隆市中人口最多的行政區</p>
+                <a href="#" onclick="fetchData('安樂')">See attractions</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card text-center">
+              <img src="images/信義.jpg" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">信義區</h5>
+                <p class="card-text">位於基隆市北部偏東，北鄰中正區，東與南邊為新北市瑞芳區，西接仁愛區。</p>
+                <a href="#" onclick="fetchData('信義')">See attractions</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="card text-center">
+              <img src="images/暖暖.jpg" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">暖暖區</h5>
+                <p class="card-text">位於基隆市東南方，區內人口約3.8萬人，為基隆市人口最少的行政區。</p>
+                <a href="#" onclick="fetchData('暖暖')">See attractions</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="container" id="all-sights" style="display: none;">
+      </div>
+
+    </section>
+
+    <script>
+
+      function fetchData(zoneName){
+        hide();
+        fetch("http://localhost:8080/SightAPI?zone=" + zoneName)
+          .then(response => response.json())
+          .then(data => {
+            var element = document.getElementById("all-sights");
+            var tmpAcco = document.createElement("div");
+              tmpAcco.className = "accordion";
+              tmpAcco.id = "accordionExample";
+            for (var i = 0; i < data.length; i+=3) {
+              var tmpRow = document.createElement("div");
+              tmpRow.className = "row";
+              for(var j = 0; j < 3; j++){
+
+                if(j+i<data.length){
+    
+                  var sight = data[j+i];
+                  var sightName = sight.sightName;
+                  var zone = sight.zone;
+                  var category = sight.category;
+                  var photoURL = sight.photoURL;
+                  var description = sight.description;
+                  var address = sight.address;
+
+                  var tmpCol = document.createElement("div");
+                  tmpCol.className = "col-md-4";
+                  var tmpText = document.createElement("div");
+                  tmpText.className = "card text-center";
+                  var tmpCardHeader = document.createElement("h2");
+                  tmpCardHeader.className = "card-header";
+                  tmpCardHeader.id = "heading"+(i+j);
+
+                  var tmpCardBtn = document.createElement("button");
+                  tmpCardBtn.setAttribute("class", "accordion-button");
+                  tmpCardBtn.setAttribute("type", "button");
+                  tmpCardBtn.setAttribute("data-bs-toggle", "collapse");
+                  tmpCardBtn.setAttribute("data-bs-target", "#collapse" + (i+j));
+                  tmpCardBtn.setAttribute("aria-expanded", "true");
+                  tmpCardBtn.setAttribute("aria-controls", "collapse" + (i+j));
+
+                  var tmpCardColl = document.createElement("div");
+                  tmpCardColl.setAttribute("id", "collapse" + (i+j));
+                  tmpCardColl.setAttribute("class", "accordion-collapse collapse");
+                  tmpCardColl.setAttribute("aria-labelledby", "heading"+(i+j));
+                  tmpCardColl.setAttribute("data-bs-parent", "#accordionExample");
+                  tmpCardColl.setAttribute("aria-controls", "collapse"+(i+j));
+
+                  var tmpCardCollBody = document.createElement("div");
+                  tmpCardCollBody.setAttribute("class", "accordion-body");
+
+                  var tmpCardPhoto = document.createElement("img");
+                  tmpCardPhoto.setAttribute("class", "card-photo");
+                  tmpCardPhoto.setAttribute("src", photoURL);
+                  var tmpCardDes = document.createElement("h6");
+                  tmpCardDes.className = "card-description";
+                  
+
+                  var desNode = document.createTextNode(description);
+                  tmpCardDes.appendChild(desNode);
+
+                  
+                  tmpCardCollBody.appendChild(tmpCardPhoto);
+                  tmpCardCollBody.appendChild(tmpCardDes);
+                  
+                  tmpCardColl.appendChild(tmpCardCollBody);
+
+                  var tmpCardTitle = document.createElement("div");
+                  tmpCardTitle.setAttribute("class", "card-title");
+
+                  var tmpCardName = document.createElement("h5");
+                  tmpCardName.className = "card-name";
+                  var tmpCardZone = document.createElement("h6");
+                  tmpCardZone.className = "card-zone";
+                  var tmpCardCategory = document.createElement("h6");
+                  tmpCardCategory.className = "card-category";
+                  var tmpCardAddr = document.createElement("a");
+                  tmpCardAddr.setAttribute("href", "http://maps.google.com.tw/maps?q="+ address);
+                  tmpCardAddr.setAttribute("class", "card-address");
+                  tmpCardAddr.setAttribute("target", "_blank");
+
+                  var addrNode = document.createTextNode(address);
+                  tmpCardAddr.appendChild(addrNode);
+                  
+
+                  var nameNode = document.createTextNode(sightName);
+                  var zoneNode = document.createTextNode("區域: " + zone);
+                  var catNode = document.createTextNode("種類: " + category);
+                  tmpCardName.appendChild(nameNode);
+                  tmpCardZone.appendChild(zoneNode);
+                  tmpCardCategory.appendChild(catNode);
+                
+
+                  tmpCardTitle.appendChild(tmpCardName);
+                  tmpCardTitle.appendChild(tmpCardZone);
+                  tmpCardTitle.appendChild(tmpCardCategory);
+
+
+                  tmpCardBtn.appendChild(tmpCardTitle);
+                  tmpCardHeader.appendChild(tmpCardBtn);
+                  tmpCardHeader.appendChild(tmpCardAddr);
+                  tmpCardHeader.appendChild(tmpCardColl);
+
+                  tmpText.appendChild(tmpCardHeader);
+                  tmpCol.appendChild(tmpText);
+                  tmpRow.appendChild(tmpCol);
+                }
+                else break;
+              }
+              tmpAcco.appendChild(tmpRow);
+            }
+            element.appendChild(tmpAcco);
+          })
+        
+
+          
+          
+
+
+      }
+
+      function hide() {
+          document.getElementById("all-zones").style.display = "none";
+          document.getElementById("all-sights").style.display = "block";
+      }
+
+      function show() {
+          document.getElementById("all-zones").style.display = "block";
+          document.getElementById("all-sights").style.display = "none";
+          document.getElementById("all-sights").innerHTML = "";
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+  </body>
+</html>
